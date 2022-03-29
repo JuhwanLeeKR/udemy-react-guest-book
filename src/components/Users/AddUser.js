@@ -10,6 +10,7 @@ const AddUser = (props) => {
   const [enteredUsername, setEnteredUsername] = useState('');
   const [enteredContact, setEnteredContact] = useState('');
   const [enteredContentBody, setEnteredContentBody] = useState('');
+  const [error, setError] = useState();
 
   const addUserHandler = (event) => {
     event.preventDefault();
@@ -18,9 +19,18 @@ const AddUser = (props) => {
       enteredContact.trim().length === 0 ||
       enteredContentBody.trim().length === 0
     ) {
+      setError({
+        title: '입력 값이 유효하지 않습니다 😓',
+        message:
+          '유효한 이름과 연락처, 내용을 입력해주세요. (모두 채워주세요 😎)',
+      });
       return;
     }
     if (+enteredContact < 0) {
+      setError({
+        title: '연락처가 유효하지 않습니다 😓',
+        message: '유효한 연락처를 입력해주세요 😎',
+      });
       return;
     }
     props.onAddUser(enteredUsername, enteredContact, enteredContentBody);
@@ -41,12 +51,19 @@ const AddUser = (props) => {
     setEnteredContentBody(event.target.value);
   };
 
+  const errorHandler = () => {
+    setError(null);
+  };
+
   return (
     <div>
-      <ErrorModal
-        title="에러가 발생 했습니다!"
-        message="무언가 잘못 되었어요!"
-      />
+      {error && (
+        <ErrorModal
+          title={error.title}
+          message={error.message}
+          onConfirm={errorHandler}
+        />
+      )}
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
           <div className={classes.inputFlex}>

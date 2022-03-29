@@ -17,6 +17,15 @@
   overflow: hidden;
 }
 
+.modal button {
+  background: #7a0852;
+}
+.modal button:hover,
+.modal button:active {
+  background: #ce148d;
+  border-color: #ce148d;
+}
+
 .header {
   background: #ad0673;
   padding: 1rem;
