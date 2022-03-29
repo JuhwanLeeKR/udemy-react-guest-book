@@ -7,24 +7,24 @@ import classes from './AddUser.module.css';
 
 const AddUser = (props) => {
   const [enteredUsername, setEnteredUsername] = useState('');
-  const [enteredPhone, setEnteredPhone] = useState('');
+  const [enteredContact, setEnteredContact] = useState('');
   const [enteredContent, setEnteredContent] = useState('');
 
   const addUserHandler = (event) => {
     event.preventDefault();
     if (
       enteredUsername.trim().length === 0 ||
-      enteredPhone.length === 0 ||
+      enteredContact.trim().length === 0 ||
       enteredContent.trim().length === 0
     ) {
       return;
     }
-    if (+enteredPhone < 0) {
+    if (+enteredContact < 0) {
       return;
     }
-    console.log(enteredUsername, enteredPhone, enteredContent);
+    props.onAddUser(enteredUsername, enteredContact, enteredContent);
     setEnteredUsername('');
-    setEnteredPhone('');
+    setEnteredContact('');
     setEnteredContent('');
   };
 
@@ -32,8 +32,8 @@ const AddUser = (props) => {
     setEnteredUsername(event.target.value);
   };
 
-  const phoneChangeHandler = (event) => {
-    setEnteredPhone(event.target.value);
+  const contactChangeHandler = (event) => {
+    setEnteredContact(event.target.value);
   };
 
   const contentChangeHandler = (event) => {
@@ -51,12 +51,12 @@ const AddUser = (props) => {
             value={enteredUsername}
             onChange={usernameChangeHandler}
           />
-          <label htmlFor="phone">연락처</label>
+          <label htmlFor="contact">연락처</label>
           <input
-            id="phone"
+            id="contact"
             type="number"
-            value={enteredPhone}
-            onChange={phoneChangeHandler}
+            value={enteredContact}
+            onChange={contactChangeHandler}
           />
         </div>
         <label htmlFor="content" className={classes.blind}>
