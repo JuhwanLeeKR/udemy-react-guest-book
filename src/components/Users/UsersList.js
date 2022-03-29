@@ -13,7 +13,7 @@ const UserList = (props) => {
             <li>
               {user.name} (contact: {user.contact})
             </li>
-            <li>{user.content}</li>
+            <li>{user.contentBody}</li>
           </div>
         ))}
       </ul>
