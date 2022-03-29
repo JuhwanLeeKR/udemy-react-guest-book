@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Card from '../UI/Card';
+import Button from '../UI/Button';
 
 import classes from './AddUser.module.css';
 
@@ -21,7 +22,7 @@ const AddUser = (props) => {
           내용
         </label>
         <textarea id="content" rows="" cols="" required />
-        <button type="submit">등록하기</button>
+        <Button type="submit">등록하기</Button>
       </form>
     </Card>
   );
